@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  nginx-gateway:
+    build:
+      context: ./nginx
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+
+  auth-service:
+    build:
+      context: ./auth-service
+    environment:
+      JWT_SECRET: "my-secret"
